@@ -8,7 +8,7 @@ from filmsdk_ibrahim import MovieClient, MovieConfig
 
 @st.cache_resource
 def get_movie_client():
-    config = MovieConfig(movie_base_url="http://localhost")
+    config = MovieConfig(movie_base_url="https://backend-cinema-96tw.onrender.com")
     client = MovieClient(config=config)
     client.health_check()
     return client
