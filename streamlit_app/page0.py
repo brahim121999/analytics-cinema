@@ -11,7 +11,7 @@ col1, col2, col3 = st.columns([1, 4, 1])
 
 with col1:
     st.image(
-        "https://raw.githubusercontent.com/brahim121999/analytics-cinema/blob/main/streamlit_app/photo.png",
+        "https://raw.githubusercontent.com/brahim121999/analytics-cinema/main/streamlit_app/photo.png",
         width=80,
         use_container_width=False,
     )
