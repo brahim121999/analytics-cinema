@@ -1,0 +1,6 @@
+filmsdk_ibrahim==0.0.4
+pandas==2.2.3
+pillow==11.2.1
+plotly-express==0.4.1
+pyarrow==19.0.1
+streamlit==1.44.1
