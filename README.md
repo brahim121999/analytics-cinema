@@ -1,9 +1,5 @@
 # 🎬 MovieLens Data Analysis & Visualization
 
-## 📊 Streamlit Application for Movie Insights
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://analytics-cinema-ibrahim.streamlit.app/)
-
 ## 🌟 Live Application
 Explore the interactive dashboard:  
 👉 [MovieLens Analytics App](https://analytics-cinema-ibrahim.streamlit.app/)
