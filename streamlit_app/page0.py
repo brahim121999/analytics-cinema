@@ -51,6 +51,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown("🔧 This phase contains code to build a REST API and a Python SDK for MovieLens data.")
+
 st.write(" ")
 st.write(" ")
 st.write(" ")
@@ -67,3 +69,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+st.markdown("📈 This phase contains code on analyzing and visualizing MovieLens data through an interactive frontend and notebooks.")

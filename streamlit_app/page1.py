@@ -17,9 +17,24 @@ st.title("🎬 General Analysis of Movies and Ratings")
 genre_df = load_parquet_data("genre_df.parquet")
 movies_by_year = load_parquet_data("movies_by_year.parquet")
 top_movies = load_parquet_data("top_movies_by_ratings.parquet")
+top_users = load_parquet_data("top_users.parquet")
 ratings_df = load_parquet_data("ratings.parquet")
 
-# Chart 1: Top 10 genres by number of movies
+# Chart 1: Number of movies by year (moved up to display first)
+fig_by_year = px.bar(
+    movies_by_year,
+    x="year",
+    y="movie_count",
+    title="Total Number of Movies per Year (Based on Title)",
+    labels={"year": "Year", "movie_count": "Number of Movies"},
+)
+fig_by_year.update_layout(
+    xaxis_title="Year",
+    yaxis_title="Number of Movies",
+    height=500
+)
+
+# Chart 2: Top 10 genres by number of movies
 fig_genre = px.bar(
     genre_df,
     x="count",
@@ -35,26 +50,30 @@ fig_genre.update_layout(
     height=350
 )
 
-# Chart 2: Top 10 users by number of ratings
-ratings_per_user = ratings_df['userId'].value_counts().reset_index()
-ratings_per_user.columns = ['userId', 'rating_count']
-top_users = ratings_per_user.head(10)
-fig_users = px.bar(
-     top_users,
-     x="rating_count",
-     y=top_users["userId"].astype(str),
-     orientation="h",
-     title="Top 10 Users by Number of Ratings",
-     labels={"userId": "User", "rating_count": "Number of Ratings"},
-     color="rating_count",
-     color_continuous_scale="viridis")
+# Chart 3: Top 10 users by number of ratings
+top_users["userId"] = top_users["userId"].astype(str)
+top_users = top_users.sort_values(by="rating_count", ascending=False)
+top_users_reversed = top_users[::-1]
 
+fig_users = px.bar(
+    top_users_reversed,
+    x="rating_count",
+    y="userId",
+    orientation="h",
+    title="Top 10 Users by Number of Ratings",
+    labels={"userId": "User", "rating_count": "Number of Ratings"},
+    color="rating_count",
+    color_continuous_scale="viridis"
+)
 fig_users.update_layout(
-     yaxis={'categoryorder': 'total ascending'},
-     height=350
+    yaxis=dict(
+        categoryorder="array",
+        categoryarray=top_users_reversed["userId"].tolist()
+    ),
+    height=400
 )
 
-# Chart 3: Top 20 movies by number of ratings
+# Chart 4: Top 20 movies by number of ratings
 fig_top_movies = px.bar(
     top_movies.sort_values("rating_count", ascending=True),
     x="rating_count",
@@ -68,20 +87,6 @@ fig_top_movies = px.bar(
 fig_top_movies.update_layout(
     yaxis={'categoryorder': 'total ascending'},
     height=700
-)
-
-# Chart 4: Number of movies by year
-fig_by_year = px.bar(
-    movies_by_year,
-    x="year",
-    y="movie_count",
-    title="Total Number of Movies per Year (Based on Title)",
-    labels={"year": "Year", "movie_count": "Number of Movies"},
-)
-fig_by_year.update_layout(
-    xaxis_title="Year",
-    yaxis_title="Number of Movies",
-    height=500
 )
 
 # Chart 5: Distribution of ratings given
@@ -106,6 +111,11 @@ fig_avg_rating_dist = px.histogram(
 fig_avg_rating_dist.update_layout(bargap=0.1)
 
 # Streamlit layout
+st.subheader("📅 Movie Production Over Time")
+st.plotly_chart(fig_by_year, use_container_width=True)
+
+st.markdown("---")
+
 st.markdown("## 📊 Insights Overview")
 st.markdown("Use the charts below to explore genre distribution, top movies, user behavior, and film trends over time.")
 
@@ -116,21 +126,14 @@ with col1:
     st.subheader("🎭 Genre Insights")
     st.plotly_chart(fig_genre, use_container_width=True)
 
-    st.markdown("<br><br>", unsafe_allow_html=True)  # add vertical spacing between charts
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     st.subheader("👤 Top Users by Ratings")
     st.plotly_chart(fig_users, use_container_width=True)
 
-
 with col2:
     st.subheader("🎞️ Top Rated Movies")
     st.plotly_chart(fig_top_movies, use_container_width=True)
-
-# Add spacing and divider
-st.markdown("---")
-
-st.subheader("📅 Movie Production Over Time")
-st.plotly_chart(fig_by_year, use_container_width=True)
 
 st.markdown("---")
 

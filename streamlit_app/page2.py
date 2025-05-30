@@ -13,6 +13,12 @@ OUTPUT_DIR = Path(__file__).resolve().parent.parent / "output"
 
 st.title("🏷️ Tags Insights")
 
+# Add explanation for what tags mean
+st.markdown(
+    "*In this context, **tags** are keywords added by users to describe movies — such as themes, actors, moods or other descriptors — "
+    "which help us understand how users perceive and categorize films.*"
+)
+
 # Load datasets
 tag_df = load_parquet_data("user_tag_stats.parquet")
 tags_good_rating_df = load_parquet_data("tags_good_rating.parquet")
