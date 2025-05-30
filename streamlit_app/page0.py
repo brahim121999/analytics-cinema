@@ -55,13 +55,13 @@ st.write(" ")
 st.write(" ")
 st.write(" ")
 
-st.markdown("# **Phase 2: Data Analysis - Exploration and Visualization**")
+st.markdown("# **Phase 2: Frontend & Data Analysis - Exploration and Visualization**")
 
 st.markdown(
     """
     <a href="https://github.com/brahim121999/analytics-cinema" target="_blank">
         <button style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px;">
-            📊 Click to View Phase 2 : MovieLens Analysis Code
+            📊 Click to View Phase 2 : Frontend & MovieLens Analysis Code
         </button>
     </a>
     """,
