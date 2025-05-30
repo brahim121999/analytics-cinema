@@ -1,10 +1,9 @@
 import streamlit as st
 
-# User interface with Streamlit
 st.set_page_config(
     layout="wide",
     page_title="MovieLens Data Analysis",
-    page_icon="🎬"  # Unicode emoji directly
+    page_icon="🎬"
 )
 
 col1, col2, col3 = st.columns([1, 4, 1])
@@ -45,7 +44,7 @@ st.markdown(
     """
     <a href="https://github.com/brahim121999/backend-cinema" target="_blank">
         <button style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px;">
-            📦 Click to View Phase 1 : Backend API & SDK code Code
+            📦 Click to View Phase 1 : Backend API & SDK Code
         </button>
     </a>
     """,
